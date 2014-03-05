@@ -21,10 +21,10 @@
         <div class="row">
    		<div class="col-lg-offset-4 col-lg-4" style="margin-top:100px">
    			<div class="block-unit" style="text-align:center; padding:8px 8px 8px 8px;">
-   				<img src="assets/img/face80x80.jpg" alt="" class="img-circle">
+   				<img src="assets/img/sm_shield36x36.png" alt="" class="img-circle">
    				<br>
    				<br>
-					<form class="cmxform" id="signupForm" method="get" action="">
+					<form class="cmxform" id="loginform" method="post" action="">
 						<fieldset>
 							<p>
 								<input id="username" name="username" type="text" placeholder="Username">
