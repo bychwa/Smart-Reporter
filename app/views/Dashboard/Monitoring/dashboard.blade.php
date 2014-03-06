@@ -42,17 +42,17 @@
 		  		<dtitle>Notification</dtitle>
 		  		<hr>
 	        	<div class="framemail">
-	    			<div class="window" style="height:235px; overflow-y:auto">
-				        <ul class="mail" id="notification_list">
-				            <li>
-			                	<i class="read">12</i>
-			                	<img class="avatar" src="assets/img/photo01.jpeg" alt="avatar">
-			                	<p class="sender">Leonard N. <span class="label">9 min ago</span></p>
-			                	<p class="message"><strong>New Mac :D</strong> - So happy with ...</p>
-				            </li>
-				            
-				            
-						</ul>
+	    			<div class="window" style="height:235px; overflow-y:auto" id="notification_list">
+				        <ul class="mail">
+				            @foreach (Notification::orderBy('id', 'DESC')->get() as $notification) {
+				            	<li onclick="return false;" onmousedown="display_notification({{ $notification->id }});">
+				                	<i class="read">0</i>
+				                	<img class="avatar" src="assets/img/photo01.jpeg" alt="avatar">
+				                	<p class="sender">{{ User::find($notification->client_id)->client->firstname." ".User::find($notification->client_id)->client->lastname }} </p>
+				                	<p class="message"><strong>{{ $notification->subject }}</strong> - {{ $notification->message }}</p>
+				            	</li>
+				            @endforeach
+				        </ul>
 					</div>
 				</div>
 			</div>
@@ -91,54 +91,7 @@
       		<div class="framemail">
     			<div class="window">
 			        <ul class="mail">
-			            <li>
-			                <i class="unread"></i>
-			                <img class="avatar" src="assets/img/photo01.jpeg" alt="avatar">
-			                <p class="sender">Adam W.</p>
-			                <p class="message"><strong>Working</strong> - This is the last...</p>
-			                <div class="actions">
-			                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/undo.png" alt="reply"></a>
-			                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/star_fav.png" alt="favourite"></a>
-			                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/tag.png" alt="label"></a>
-			                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/trash.png" alt="delete"></a>
-			                </div>
-			            </li>
-			            <li>
-			                <i class="read"></i>
-			                <img class="avatar" src="assets/img/photo02.jpg" alt="avatar">
-			                <p class="sender">Dan E.</p>
-			                <p class="message"><strong>Hey man!</strong> - You have to taste ...</p>
-			                <div class="actions">
-			                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/undo.png" alt="reply"></a>
-			                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/star_fav.png" alt="favourite"></a>
-			                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/tag.png" alt="label"></a>
-			                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/trash.png" alt="delete"></a>
-			                </div>
-			            </li>
-			            <li>
-			                <i class="read"></i>
-			                <img class="avatar" src="assets/img/photo03.jpg" alt="avatar">
-			                <p class="sender">Leonard N.</p>
-			                <p class="message"><strong>New Mac :D</strong> - So happy with ...</p>
-			                <div class="actions">
-			                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/undo.png" alt="reply"></a>
-			                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/star_fav.png" alt="favourite"></a>
-			                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/tag.png" alt="label"></a>
-			                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/trash.png" alt="delete"></a>
-			                </div>
-			            </li>
-			            <li>
-			                <i class="read"></i>
-			                <img class="avatar" src="assets/img/photo04.jpg" alt="avatar">
-			                <p class="sender">Peter B.</p>
-			                <p class="message"><strong>Thank you</strong> - Finally I can ...</p>
-			                <div class="actions">
-			                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/undo.png" alt="reply"></a>
-			                    <a><img src="http://png-1.findicons.com/files//icons/2232/wireframe_mono/16/star_fav.png" alt="favourite"></a>
-			                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/tag.png" alt="label"></a>
-			                    <a><img src="http://png-4.findicons.com/files//icons/2232/wireframe_mono/16/trash.png" alt="delete"></a>
-			                </div>
-			            </li>
+			            
 			        </ul>
     			</div>
 			</div>
@@ -165,14 +118,22 @@
 	  <!-- LAST MONTH REVENUE -->     
         <div class="col-sm-3 col-lg-3">
       		<div class="dash-unit">
-	      		<dtitle>Last Month Revenue</dtitle>
+	      		<dtitle>Last Month Notification</dtitle>
 	      		<hr>
 	      		<div class="cont">
-					<p><bold>$879</bold> | <ok>Approved</ok></p>
-					<br>
-					<p><bold>$377</bold> | Pending</p>
-					<br>
-					<p><bold>$156</bold> | <bad>Denied</bad></p>
+	      			<div style="padding-left:10px;">
+		      			<table>
+		      				<tr>
+		      					<td> <bold>879</bold></td><td> | </td><td style="text-align:left"> <ok>Successful Notification</ok></td>
+		      				</tr>
+		      				<tr>
+		      					<td> <bold>377</bold></td><td> | </td><td style="text-align:left">Wrong Notification</td>
+		      				</tr>
+		      				<tr>
+		      					<td> <bold>156</bold></td><td> | </td><td style="text-align:left"> <bad>Unsuccessful Notification</bad></td>
+		      				</tr>
+		      			</table>
+					</div>
 					<br>
 					<p><img src="assets/img/up-small.png" alt=""> 12% Compared Last Month</p>
 
@@ -202,6 +163,26 @@
     </div><!-- /row -->
       
 	</div> <!-- /container -->
+	<div class="hiddens">
+		<div class="modal fade" id="notification_panel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  	<div class="modal-dialog">
+			    <div class="modal-content">
+			      	<div class="modal-header">
+			        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        	<h4 class="modal-title" id="notification_header">Notification header</h4>
+			      	</div>
+			      	<div class="modal-body">
+			     		<div id="notification_body"></div>
+			      	</div>
+			      	<div class="modal-footer">
+			        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        	<button type="button" class="btn btn-primary">Already Sent Troops!</button>
+			      	</div>
+			    </div>
+		  	</div>
+		</div>
+	</div>
+
 	<div id="footerwrap">
       	<footer class="clearfix"></footer>
       	<div class="container">

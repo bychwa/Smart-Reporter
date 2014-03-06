@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'Smart-Reporter',
+			'database'  => 'SR_Database',
 			'username'  => 'root',
 			'password'  => 'root',
 			'charset'   => 'utf8',

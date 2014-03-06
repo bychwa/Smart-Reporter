@@ -7,7 +7,10 @@ class Notification extends Eloquent {
 	 *
 	 * @var string
 	 */
-	protected $table = 'SM_Notifications';
-	protected $fillable=array('header','message','client_id','seen');
+	protected $table = 'Notifications';
+	protected $fillable=array('subject','message','client_id','company_id','geo_location','seen');
 
+	public function user(){
+		return $this->belongsTo('User','id','client_id');
+	}
 }

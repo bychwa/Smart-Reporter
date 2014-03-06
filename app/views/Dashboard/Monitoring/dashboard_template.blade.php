@@ -93,15 +93,7 @@
     {{ HTML::Script('assets/js/admin.js') }}
 	<script type="text/javascript">
 		  function addmsg(type, msg){
-		        /* Simple helper to add a div.
-		        type is the name of a CSS class (old/new/error).
-		        msg is the contents of the div */
-		        // $("#messages").append(
-		        //     "<div class='msg "+ type +"'>"+ msg +"</div>"
-		        // );
-				var id=1;
-				var msg="{{ 'User: '.Notification::find(1)->client_id. ' Said '.Notification::find(1)->message }}"
-				noty({
+		        noty({
 					layout: 'topRight',
 				    theme: 'defaultTheme',
 				    type:'alert',
@@ -109,16 +101,16 @@
 					timeout: 10000, // delay for closing event. Set false for sticky notifications
     				callback: {
 					        onShow: function() {
-					        	var thissound=document.getElementById("sound1");
-  								thissound.Play();
+					        	//var thissound=document.getElementById("sound1");
+  								//thissound.Play();
+  								
 					        },
 					        afterShow: function() {},
 					        onClose: function() {},
 					        afterClose: function(){}
 					    },					
 					});
-				<embed src="asset/audio/success.wav" autostart=false width=1 height=1 id="sound1"
-enablejavascript="true">
+				
 				// $("#notification_list").append("<li>
 			 //                	<i class='read'>12</i>
 			 //                	<img class='avatar' src='assets/img/photo01.jpeg' alt='avatar'>
@@ -141,19 +133,35 @@ enablejavascript="true">
 
 		            success: function(data){ /* called when request to barge.php completes */
 		                addmsg("new", data); /* Add response to a .msg div (with the "new" class)*/
+		                $("#notification_list").load(location.href + " #notification_list > *").show('slow');
+		                //$("#notification_list").load('{{ Request::url()}}');
 		                setTimeout(
 		                    waitForMsg, /* Request next message */
 		                    1000 /* ..after 1 seconds */
 		                );
 		            },
 		            error: function(XMLHttpRequest, textStatus, errorThrown){
-		                addmsg("error", textStatus + " (" + errorThrown + ")");
+		                //addmsg("error", textStatus + " (" + errorThrown + ")");
 		                setTimeout(
 		                    waitForMsg, /* Try again after.. */
 		                    15000); /* milliseconds (15seconds) */
 		            }
 		        });
 		    };
+		    function display_notification(id){
+		    	$.ajax({
+		            type: "get",
+		            url: "http://localhost/Smart-Reporter/public/notification/get?id="+id,
+		            success: function(data){ /* called when request to barge.php completes */
+		            	$("#notification_header").html('Notification No:'+id).show();
+		    			$("#notification_body").html(data).show();
+		    			$('#notification_panel').modal('show');
+		            },
+		            error: function(XMLHttpRequest, textStatus, errorThrown){
+		                alert(textStatus);
+		            }
+		        });
+		    }
 		waitForMsg();
 	</script>
 @stop

@@ -4,55 +4,36 @@
 
     <div class="container">
     	<ul class="nav nav-tabs" id="myTab">
-		  <li class="active"><a href="#all" data-toggle="tab">All Clients</a></li>
-		  <li><a href="#add" data-toggle="tab">Add New Clients</a></li>
-		  <li><a href="#edit" data-toggle="tab">Edit Clients</a></li>
+		  <li class="active"><a href="#all" data-toggle="tab">All Companies</a></li>
+		  <li><a href="#add" data-toggle="tab">Add New Company</a></li>
+		  <li><a href="#edit" data-toggle="tab">Edit Company</a></li>
 		</ul>
 
 		<div class="tab-content">
 		  	<div class="tab-pane active" id="all">
 		  		<div class="panel panel-default">
 		  			<div class="panel-body">
-		  				<legend>Active Clients</legend>
+		  				<legend>Active Companies</legend>
         		        <table class="table table-bordered table-hover table-condensed display" id="all_clients_table">
 					        <thead>
 					          <tr>
 					            <th>Full Name</th>
 					            <th>Location</th>
 					            <th>Created On</th>
-					            <th>Service Package</th>
+					            <th>Account Type</th>
 					            <th>Action</th>
 					          </tr>
 					        </thead>
 					        <tbody>
+					        @foreach (Company::all() as $company)
 					          <tr class="odd gradeX">
-					            <td>Jackson Isack</td>
-					            <td>Ilala Dar es salaam</td>
-					            <td>12th March 2014</td>
-					            <td class="center"> Full Pack</td>
+					            <td>{{ $company->name }}</td>
+					            <td>{{ $company->location }}</td>
+					            <td>{{ $company->created_at }}</td>
+					            <td class="center"> {{ $company->user->account_type }}</td>
 					            <td class="center">X</td>
 					          </tr>
-					          <tr class="odd gradeX">
-					            <td>Jackson Isack</td>
-					            <td>Ilala Dar es salaam</td>
-					            <td>12th March 2014</td>
-					            <td class="center"> Full Pack</td>
-					            <td class="center">X</td>
-					          </tr>
-					          <tr class="odd gradeX">
-					            <td>Mary Mlope</td>
-					            <td>Ilala Dar es salaam</td>
-					            <td>19th March 2014</td>
-					            <td class="center"> Partial Pack</td>
-					            <td class="center">X</td>
-					          </tr>
-					          <tr class="odd gradeX">
-					            <td>Chris Statham</td>
-					            <td>Kinondoni Dar es salaam</td>
-					            <td>15th March 2014</td>
-					            <td class="center"> Full Pack</td>
-					            <td class="center">X</td>
-					          </tr>
+					        @endforeach
 					        </tbody>
 					    </table><!--/END OF TABLE -->
 				  	</div>
@@ -62,29 +43,35 @@
 		  		<div class="panel panel-default">
 		  			<div class="panel-body">
 		  			<div id="register-wraper">
-        		    <form id="register-form" class="form">
+        		    {{ Form::open(array('url'=>action('CompaniesController@register_company')))}}
         		        <legend>Client Register</legend>
         		        <div class="body">
         		        	<!-- first name -->
-    		        		<label for="name">First name</label>
+    		        		<label for="name">Company Name</label>
     		        		<input name="name" class="input-huge" type="text">
-        		        	<!-- last name -->
-    		        		<label for="surname">Last name</label>
-    		        		<input name="surname" class="input-huge" type="text">
+        		        	<!-- location -->
+    		        		<label for="location">Location</label>
+    		        		<input name="location" class="input-huge" type="text">
+        		        	<!-- Company Type -->
+    		        		<label for="company_type">Company Type</label>
+    		        		<br/>
+        		        	{{ Form::select('company_type',array('Partnership','Coporate','Other'),array('class'=>'class="input-huge"'))}}
         		        	<!-- username -->
+        		        	<br/>
+        		        	<br/>
         		        	<label>Username</label>
-        		        	<input class="input-huge" type="text">
+        		        	<input class="input-huge" type="text" name="username">
         		        	<!-- email -->
         		        	<label>E-mail</label>
-        		        	<input class="input-huge" type="text">
+        		        	<input class="input-huge" type="text" name="email">
         		        	<!-- password -->
         		        	<label>Default-Password</label>
-        		        	<input class="input-huge" type="text">
+        		        	<input class="input-huge" type="text" name="password">
         		        </div>
         		        <div class="footer">
         		            <button type="submit" class="btn btn-success">Register</button>
         		        </div>
-        		    </form>
+        		    {{ Form::close() }}
         		</div>
 
 		  		</div>
