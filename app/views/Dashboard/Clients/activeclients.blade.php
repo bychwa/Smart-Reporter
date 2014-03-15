@@ -5,8 +5,6 @@
     <div class="container">
     	<ul class="nav nav-tabs" id="myTab">
 		  <li class="active"><a href="#all" data-toggle="tab">All Clients</a></li>
-		  <li><a href="#add" data-toggle="tab">Add New Clients</a></li>
-		  <li><a href="#edit" data-toggle="tab">Edit Clients</a></li>
 		</ul>
 
 		<div class="tab-content">
@@ -14,7 +12,6 @@
 		  		<div class="panel panel-default">
 		  			<div class="panel-body">
 		  				<legend>Active Clients</legend>
-		  				/*mitengeneze link to the active clients.
         		        <table class="table table-bordered table-hover table-condensed display" id="all_clients_table">
 					        <thead>
 					          <tr>
@@ -44,32 +41,7 @@
 		  		<div class="panel panel-default">
 		  			<div class="panel-body">
 		  			<div id="register-wraper">
-        		    {{ Form::open(array('url'=>action('ClientsController@register_client'))) }}
-        		    <form id="register-form" class="form">
-        		        <legend>Client Register</legend>
-        		        <div class="body">
-        		        	<!-- first name -->
-    		        		<label for="firstname">First name</label>
-    		        		<input name="firstname" class="input-huge" type="text">
-        		        	<!-- last name -->
-    		        		<label for="lastname">Last name</label>
-    		        		<input name="lastname" class="input-huge" type="text">
-        		        	<!-- username -->
-        		        	<label for="username">Username</label>
-        		        	<input class="input-huge" name="username" type="text">
-        		        	<!-- email -->
-        		        	<label for="email">E-mail</label>
-        		        	<input class="input-huge" type="text" name="email">
-        		        	<!-- password -->
-        		        	<label for="password">Default-Password</label>
-        		        	<input class="input-huge" type="text" name="password">
-        		        </div>
-        		        <div class="footer">
-        		            <button type="submit" class="btn btn-success">Register</button>
-        		        </div>
-        		    {{ Form::close() }}
-        		</div>
-
+        		   
 		  		</div>
 		  	</div>
 		  	<div class="tab-pane" id="edit">
