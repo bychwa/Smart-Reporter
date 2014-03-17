@@ -15,7 +15,7 @@
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li class="active"><a href="index.html"><i class="icon-home icon-white"></i> Monitoring</a></li>
- 
+              <li><a href="manager.html"><i class="icon-folder-open icon-white"></i> Clients</a></li>
               <li><a href="calendar.html"><i class="icon-calendar icon-white"></i> Users</a></li>
               <li><a href="tables.html"><i class="icon-th icon-white"></i> Management</a></li>
             </ul>

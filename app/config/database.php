@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'SR_Database',
 			'username'  => 'root',
-			'password'  => 'root',
+			'password'  => '2412@ami',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
