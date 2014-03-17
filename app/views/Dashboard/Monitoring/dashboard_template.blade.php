@@ -162,6 +162,53 @@
 		            }
 		        });
 		    }
+		    function display_map(){
+		    	//<![CDATA[
+			var map; // Global declaration of the map
+			var lat_longs_map = new Array();
+			var markers_map = new Array();
+			
+			var iw_map = new google.maps.InfoWindow();
+				
+				 function initialize_map() {
+				
+				var myLatlng = new google.maps.LatLng(-6.761488, 39.230917);
+				var myOptions = {
+			  		zoom: 13,
+					center: myLatlng,
+			  		mapTypeId: google.maps.MapTypeId.SATELLITE}
+				map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
+			
+			var myLatlng = new google.maps.LatLng(-6.761488, 39.230917);
+				
+			var markerOptions = {
+				map: map,
+				position: myLatlng		
+			};
+			marker_0 = createMarker_map(markerOptions);
+			fitMapToBounds_map();
+			}
+			function createMarker_map(markerOptions) {
+				var marker = new google.maps.Marker(markerOptions);
+				markers_map.push(marker);
+				lat_longs_map.push(marker.getPosition());
+				return marker;
+			}
+		
+			function fitMapToBounds_map() {
+				var bounds = new google.maps.LatLngBounds();
+				if (lat_longs_map.length>0) {
+					for (var i=0; i<lat_longs_map.length; i++) {
+						bounds.extend(lat_longs_map[i]);
+					}
+					map.fitBounds(bounds);
+				}
+			}
+			
+			google.maps.event.addDomListener(window, 'load', initialize_map);
+			
+			//]]>
+		    }
 		waitForMsg();
 	</script>
 @stop

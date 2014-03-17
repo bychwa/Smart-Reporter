@@ -8,7 +8,7 @@ class LoginController extends BaseController {
 	}
 	public function do_login(){
 		//echo Input::get('username')." ".Input::get('password');
-		return View::make('Dashboard.Monitoring.dashboard');
+		return Redirect::to('/monitoring');	
 	}
 
 }

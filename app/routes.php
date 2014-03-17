@@ -73,6 +73,15 @@ Route::get('/notification/get', function(){
 					".$noty->message."
 				</td>
 			<tr/>
+			<tr>
+			<td rowspan='2'>
+				Location on Map!
+				<script type='text/javascript'>
+					//display_map();
+				</script>
+				<div id='map_canvas'></div>
+			</td>
+			</tr>
 			
 		</table>
 	";
