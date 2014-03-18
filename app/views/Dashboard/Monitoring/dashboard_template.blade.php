@@ -60,7 +60,6 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="monitoring"><i class="icon-home icon-white"></i> Monitoring</a></li>
               <li><a href="clients"><i class="icon-folder-open icon-white"></i> Clients</a></li>
-              <li><a href="users"><i class="icon-calendar icon-white"></i> Users</a></li>
               <li><a href="management"><i class="icon-th icon-white"></i> Management</a></li>
             </ul>
           </div><!--/.nav-collapse -->

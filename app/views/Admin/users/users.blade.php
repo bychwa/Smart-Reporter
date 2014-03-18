@@ -1,19 +1,19 @@
-@extends('Dashboard.Clients.clients_template')
+@extends('Dashboard.Users.users_template')
 @section('body')
 	@parent
 
     <div class="container">
     	<ul class="nav nav-tabs" id="myTab">
-		  <li class="active"><a href="#all" data-toggle="tab">All Clients</a></li>
-		  <li><a href="#add" data-toggle="tab">Add New Clients</a></li>
-		  <li><a href="#edit" data-toggle="tab">Edit Clients</a></li>
+		  <li class="active"><a href="#all" data-toggle="tab">All Companies</a></li>
+		  <li><a href="#add" data-toggle="tab">Add New Company</a></li>
+		  <li><a href="#edit" data-toggle="tab">Edit Company</a></li>
 		</ul>
 
 		<div class="tab-content">
 		  	<div class="tab-pane active" id="all">
 		  		<div class="panel panel-default">
 		  			<div class="panel-body">
-		  				<legend>Active Clients</legend>
+		  				<legend>Active Companies</legend>
         		        <table class="table table-bordered table-hover table-condensed display" id="all_clients_table">
 					        <thead>
 					          <tr>
@@ -25,15 +25,15 @@
 					          </tr>
 					        </thead>
 					        <tbody>
-					        @foreach (Client::all() as $client)
+					        @foreach (Company::all() as $company)
 					          <tr class="odd gradeX">
-					            <td> {{ $client->firstname. " ". $client->lastname }} </td>
-					            <td>{{ $client->location }}</td>
-					            <td>{{ $client->created_at }}</td>
-					            <td class="center">{{ $client->user->account_type }} </td>
+					            <td>{{ $company->name }}</td>
+					            <td>{{ $company->location }}</td>
+					            <td>{{ $company->created_at }}</td>
+					            <td class="center"> {{ $company->user->account_type }}</td>
 					            <td class="center">X</td>
 					          </tr>
-				            @endforeach
+					        @endforeach
 					        </tbody>
 					    </table><!--/END OF TABLE -->
 				  	</div>
@@ -43,24 +43,29 @@
 		  		<div class="panel panel-default">
 		  			<div class="panel-body">
 		  			<div id="register-wraper">
-        		    {{ Form::open(array('url'=>action('ClientsController@register_client'))) }}
-        		    <form id="register-form" class="form">
+        		    {{ Form::open(array('url'=>action('CompaniesController@register_company')))}}
         		        <legend>Client Register</legend>
         		        <div class="body">
         		        	<!-- first name -->
-    		        		<label for="firstname">First name</label>
-    		        		<input name="firstname" class="input-huge" type="text">
-        		        	<!-- last name -->
-    		        		<label for="lastname">Last name</label>
-    		        		<input name="lastname" class="input-huge" type="text">
+    		        		<label for="name">Company Name</label>
+    		        		<input name="name" class="input-huge" type="text">
+        		        	<!-- location -->
+    		        		<label for="location">Location</label>
+    		        		<input name="location" class="input-huge" type="text">
+        		        	<!-- Company Type -->
+    		        		<label for="company_type">Company Type</label>
+    		        		<br/>
+        		        	{{ Form::select('company_type',array('Partnership','Coporate','Other'),array('class'=>'class="input-huge"'))}}
         		        	<!-- username -->
-        		        	<label for="username">Username</label>
-        		        	<input class="input-huge" name="username" type="text">
+        		        	<br/>
+        		        	<br/>
+        		        	<label>Username</label>
+        		        	<input class="input-huge" type="text" name="username">
         		        	<!-- email -->
-        		        	<label for="email">E-mail</label>
+        		        	<label>E-mail</label>
         		        	<input class="input-huge" type="text" name="email">
         		        	<!-- password -->
-        		        	<label for="password">Default-Password</label>
+        		        	<label>Default-Password</label>
         		        	<input class="input-huge" type="text" name="password">
         		        </div>
         		        <div class="footer">
