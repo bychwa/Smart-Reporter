@@ -14,6 +14,9 @@
 Route::get('/', array('uses'=>'LoginController@index'));
 Route::post('/', array('uses'=>'LoginController@do_login'));
 
+Route::get('/admin' , array('uses'=>'AdminController@index'));
+ 
+
 Route::get('/dashboard', array('uses'=>'DashboardController@index'));
 Route::get('/monitoring', array('uses'=>'DashboardController@index'));
 Route::get('/clients', array('uses'=>'ClientsController@index'));

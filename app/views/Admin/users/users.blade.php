@@ -1,4 +1,4 @@
-@extends('Dashboard.Users.users_template')
+@extends('Admin.Users.users_template')
 @section('body')
 	@parent
 

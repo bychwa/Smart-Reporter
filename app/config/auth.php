@@ -2,6 +2,11 @@
 
 return array(
 
+
+	'username'=>'username',
+
+	'password'=>'password',
+
 	/*
 	|--------------------------------------------------------------------------
 	| Default Authentication Driver
