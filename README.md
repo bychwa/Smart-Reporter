@@ -7,4 +7,4 @@ Smart Reporter is a Mobile and Web application for
 
 ## Official Documentation
 
-Documentation for the entire platform can be found on the [smart reporter website](http://laravel.com/docs).
+Documentation for the entire platform can be found on the [smart reporter website](http:www.jacksonisack.info).
